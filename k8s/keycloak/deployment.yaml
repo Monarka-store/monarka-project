@@ -19,6 +19,8 @@ spec:
           env:
             - name: KEYCLOAK_DATABASE_HOST
               value: keycloak-db
+            - name: KEYCLOAK_DATABASE_PORT
+              value: 5432
             - name: KEYCLOAK_DATABASE_NAME
               value: keycloak
             - name: KEYCLOAK_DATABASE_USER
