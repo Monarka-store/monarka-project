@@ -12,7 +12,7 @@ spec:
     targetRevision: HEAD
     helm:
       releaseName: k8s/monarka-store
-      valuesFiles:
+      valueFiles:
         - values.yaml
   destination:
     server: https://kubernetes.default.svc
