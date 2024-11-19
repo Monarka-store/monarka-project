@@ -9,9 +9,9 @@ spec:
   source:
     chart: monarka-project
     repoURL: https://github.com/Monarka-store/monarka-project
-    targetRevision: HEAD
+    targetRevision: main
+    path: 'k8s/monarka-store'
     helm:
-      releaseName: k8s/monarka-store
       valueFiles:
         - values.yaml
   destination:
