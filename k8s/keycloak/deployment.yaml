@@ -16,16 +16,7 @@ spec:
       containers:
         - name: keycloak
           image: bitnami/keycloak:26
-
-          resources:
-            requests:
-              memory: "512Mi"
-              cpu: "500m"
-            limits:
-              memory: "1Gi"
-              cpu: "1"
-              storage: "2Gi"
-
+          env:
             - name: KEYCLOAK_DATABASE_HOST
               value: keycloak-db
             - name: KEYCLOAK_DATABASE_NAME

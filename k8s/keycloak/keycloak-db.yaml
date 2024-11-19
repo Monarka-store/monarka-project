@@ -16,17 +16,6 @@ spec:
       containers:
         - name: keycloak-db
           image: bitnami/postgresql:14
-
-          resources:
-            requests:
-              memory: '256Mi'
-              cpu: '250m'
-                    storage: '1Gi'
-                  limits:
-                    memory: '512Mi'
-                    cpu: '500m'
-                    storage: '2Gi'
-
           env:
             - name: POSTGRESQL_DATABASE
               value: keycloak
