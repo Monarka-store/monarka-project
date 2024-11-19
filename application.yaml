@@ -8,7 +8,7 @@ spec:
 
   source:
     repoURL: https://github.com/Monarka-store/monarka-project.git
-    targetRevision: HEAD
+    targetRevision: main
     path: k8s
   destination:
     server: https://kubernetes.default.svc
