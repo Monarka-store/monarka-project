@@ -52,10 +52,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: keycloak
+  name: keycloak-service
 spec:
+  selector:
+    app: keycloak
   ports:
     - port: 8181
       targetPort: 8181
-  selector:
-    app: keycloak

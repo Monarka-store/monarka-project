@@ -1,8 +1,19 @@
-# Helm commands
+# Argo CD Commands
 
-- Crear configuración `helm create <nombre>`
-- Aplicar configuración inicial: `helm install <nombre> .`
-- Aplicar actualizaciones: `helm upgrade <nombre> .`
+```
+# install ArgoCD in k8s
+kubectl create namespace argocd
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+
+# access ArgoCD UI
+kubectl get svc -n argocd
+kubectl port-forward svc/argocd-server 8080:443 -n argocd
+
+# login with admin user and below token (as in documentation):
+kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 --decode && echo
+
+# you can change and delete init password
+```
 
 # K8s commands
 
@@ -17,16 +28,6 @@
 ```
 kubectl create deployment <nombre> --image=<registro/url/imagen> --dry-run=client -o yaml > deployment.yml
 ```
-
-# Crear service
-
-```
-kubectl create service clusterip <nombre> --tcp=<8888> --dry-run=client -o yaml > service.yml
-kubectl create service nodeport <nombre> --tcp=<3000> --dry-run=client -o yaml > service.yml
-```
-
-- **clusterip**: solo se puede acceder desde dentro del cluster
-- **nodeport**: se puede acceder desde fuera del cluster
 
 # Secrets
 
@@ -55,20 +56,6 @@ Recordar que los secrets están en `base64`, por lo que si queremos editar un se
 7. Presionar **esc** y luego `:. ! base64` para codificar el valor
 8. Editar nuevamente el archivo **i** y dejar la línea en su posición
 9. Presionar **esc** y luego **:wq** para guardar y salir
-
-## Configurar secretos de Google Cloud para obtener las imágenes
-
-1. Crear secreto:
-
-```
-kubectl create secret docker-registry gcr-json-key --docker-server=SERVIDOR-DE-GOOGLE-docker.pkg.dev --docker-username=_json_key --docker-password="$(cat 'PATH/DE/Tienda Microservices IAM.json')" --docker-email=TU_CORREO@gmail.com
-```
-
-2. Path del secreto para que use la llave:
-
-```
-kubectl patch serviceaccounts default -p '{ "imagePullSecrets": [{ "name":"gcr-json-key" }] }'
-```
 
 ## Exportar y aplicar configuraciones con archivos (secrets en este caso)
 
