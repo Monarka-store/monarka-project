@@ -7,13 +7,17 @@ spec:
   project: default
 
   source:
-    repoURL: ''
+    repoURL: https://github.com/Monarka-store/monarka-project.git
     targetRevision: HEAD
-    path: helm/keycloak
+    path: k8s/monarka-store
   destination:
-    server: 'https://kubernetes.default.svc'
-    namespace: default
+    server: https://kubernetes.default.svc
+    namespace: monarka
+
   syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+
     automated:
-      prune: true
       selfHeal: true
+      prune: true
