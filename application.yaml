@@ -11,6 +11,8 @@ spec:
     targetRevision: HEAD
     helm:
       releaseName: monarka-store
+      valuesFiles:
+        - values.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: monarka
