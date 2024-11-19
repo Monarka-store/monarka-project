@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: keycloak-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: keycloak-db
+  template:
+    metadata:
+      labels:
+        app: keycloak-db
+    spec:
+      automountServiceAccountToken: false
+      containers:
+        - name: keycloak-db
+          image: bitnami/postgresql:14
+
+          resources:
+            requests:
+              memory: '256Mi'
+              cpu: '250m'
+                    storage: '1Gi'
+                  limits:
+                    memory: '512Mi'
+                    cpu: '500m'
+                    storage: '2Gi'
+
+          env:
+            - name: POSTGRESQL_DATABASE
+              value: keycloak
+            - name: POSTGRESQL_USERNAME
+              value: keycloak
+            - name: POSTGRESQL_PASSWORD
+              value: M1thr4nd1r
+              # valueFrom:
+              #   secretKeyRef:
+              #     name: keycloak-db-secret
+              #     key: db-password
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: keycloak-db
+spec:
+  ports:
+    - port: 5432
+  selector:
+    app: keycloak-db

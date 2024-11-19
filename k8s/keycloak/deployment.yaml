@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: keycloak
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: keycloak
+  template:
+    metadata:
+      labels:
+        app: keycloak
+    spec:
+      automountServiceAccountToken: false
+      containers:
+        - name: keycloak
+          image: bitnami/keycloak:26
+
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "500m"
+            limits:
+              memory: "1Gi"
+              cpu: "1"
+              storage: "2Gi"
+
+            - name: KEYCLOAK_DATABASE_HOST
+              value: keycloak-db
+            - name: KEYCLOAK_DATABASE_NAME
+              value: keycloak
+            - name: KEYCLOAK_DATABASE_USER
+              value: keycloak
+            - name: KEYCLOAK_DATABASE_PASSWORD
+              value: M1thr4nd1r
+              # valueFrom:
+              #   secretKeyRef:
+              #     name: keycloak-db-secret
+              #     key: db-password
+            - name: KEYCLOAK_ADMIN_USER
+              value: admin
+            - name: KEYCLOAK_ADMIN_PASSWORD
+              value: admin
+              # valueFrom:
+              #   secretKeyRef:
+              #     name: keycloak-db-secret
+              #     key: admin-password
+          ports:
+            - containerPort: 8181
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: keycloak
+spec:
+  ports:
+    - port: 8181
+      targetPort: 8181
+  selector:
+    app: keycloak
