@@ -10,7 +10,7 @@ spec:
     chart: monarka-project
     repoURL: https://github.com/Monarka-store/monarka-project
     targetRevision: HEAD
-    path: 'k8s/monarka-store'
+    path: k8s
   destination:
     server: https://kubernetes.default.svc
     namespace: default
