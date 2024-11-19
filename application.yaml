@@ -7,15 +7,16 @@ spec:
   project: default
 
   source:
-    repoURL: https://github.com/Monarka-store/monarka-project.git
+    chart: monarka-project
+    repoURL: https://github.com/Monarka-store/monarka-project
     targetRevision: HEAD
     helm:
-      releaseName: monarka-store
+      releaseName: k8s/monarka-store
       valuesFiles:
         - values.yaml
   destination:
     server: https://kubernetes.default.svc
-    namespace: monarka
+    namespace: default
 
   syncPolicy:
     syncOptions:
