@@ -13,6 +13,9 @@ kubectl port-forward svc/argocd-server 8080:443 -n argocd
 kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 --decode && echo
 
 # you can change and delete init password
+
+# delete all argocd
+kubectl delete all -l app.kubernetes.io/part-of=argocd -n argocd
 ```
 
 # K8s commands
