@@ -22,7 +22,10 @@ spec:
             - name: PORT
               value: 8585
             - name: DATABASE_URL
-              value: api-db-service
+              valueFrom:
+                secretKeyRef:
+                  name: api-secrets
+                  key: database-url
             - name: JWT_SECRET
               valueFrom:
                 secretKeyRef:
