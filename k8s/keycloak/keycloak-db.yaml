@@ -16,6 +16,9 @@ spec:
       containers:
         - name: keycloak-db
           image: bitnami/postgresql:14
+          volumeMounts:
+            - name: db-data
+              mountPath: /bitnami/postgresql
           env:
             - name: POSTGRESQL_DATABASE
               value: keycloak
