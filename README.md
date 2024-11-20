@@ -14,8 +14,16 @@ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.pas
 
 # begin applications
 cd argocd-apps
+
 kubectl apply -f keycloak-app.yaml
+
 kubectl apply -f api-app.yaml
+kubectl create secret docker-registry acr-secret \
+  --docker-server=monarkastoreapirn.azurecr.io \
+  --docker-username=<your-acr-username> \
+  --docker-password=<your-acr-password> \
+  --docker-email=<your-email>
+
 kubectl apply -f client-app.yaml
 
 # delete all argocd

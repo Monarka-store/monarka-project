@@ -13,6 +13,8 @@ spec:
         app: api
     spec:
       automountServiceAccountToken: false
+      imagePullSecrets:
+        - name: acr-secret
       containers:
         - name: api
           image: monarkastoreapirn.azurecr.io/monarka-api:latest
