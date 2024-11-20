@@ -17,11 +17,11 @@ spec:
         - name: keycloak-db
           image: bitnami/postgresql:14
           env:
-            - name: POSTGRESQL_DATABASE
+            - name: POSTGRES_DB
               value: keycloak
-            - name: POSTGRESQL_USERNAME
+            - name: POSTGRES_USER
               value: keycloak
-            - name: POSTGRESQL_PASSWORD
+            - name: POSTGRES_PASSWORD
               value: M1thr4nd1r
               # valueFrom:
               #   secretKeyRef:
@@ -36,4 +36,6 @@ spec:
   selector:
     app: keycloak-db
   ports:
-    - port: 5432
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432
