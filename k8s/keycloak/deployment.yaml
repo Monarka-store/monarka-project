@@ -45,11 +45,9 @@ kind: Service
 metadata:
   name: keycloak-service
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     app: keycloak
   ports:
     - port: 8484
       targetPort: 8484
-status:
-  loadBalancer: {}
