@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: monarka-project
+  name: api-monarka-store
   namespace: argocd
 spec:
   project: default
@@ -9,7 +9,7 @@ spec:
   source:
     repoURL: https://github.com/Monarka-store/monarka-project.git
     targetRevision: main
-    path: k8s/keycloak
+    path: k8s/api
   destination:
     server: https://kubernetes.default.svc
     namespace: default

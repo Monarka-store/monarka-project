@@ -12,7 +12,11 @@ kubectl port-forward svc/argocd-server 8080:443 -n argocd
 # login with admin user and below token (as in documentation):
 kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 --decode && echo
 
-# you can change and delete init password
+# begin applications
+cd argocd-apps
+kubectl apply -f keycloak-app.yaml
+kubectl apply -f api-app.yaml
+kubectl apply -f client-app.yaml
 
 # delete all argocd
 kubectl delete all -l app.kubernetes.io/part-of=argocd -n argocd
