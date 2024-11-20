@@ -13,7 +13,6 @@ kubectl port-forward svc/argocd-server 8080:443 -n argocd
 kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 --decode && echo
 
 # config Azure Container Registries
-
 kubectl create secret docker-registry acr-secret \
   --docker-server=<your-acr-loginserver>.azurecr.io \
   --docker-username=<your-acr-username> \
