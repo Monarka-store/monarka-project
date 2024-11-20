@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: keycloak-db-pvc
+  name: api-db-pvc
 spec:
   accessModes:
     - ReadWriteOnce
@@ -12,22 +12,22 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: keycloak-db
+  name: api-db
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: keycloak-db
+      app: api-db
   template:
     metadata:
       labels:
-        app: keycloak-db
+        app: api-db
     spec:
       automountServiceAccountToken: false
       volumes:
         - name: db-data
           persistentVolumeClaim:
-            claimName: keycloak-db-pvc
+            claimName: api-db-pvc
       containers:
         - name: keycloak-db
           image: bitnami/postgresql:14
@@ -36,23 +36,23 @@ spec:
               mountPath: /bitnami/postgresql
           env:
             - name: POSTGRESQL_DATABASE
-              value: keycloak
+              value: monarka
             - name: POSTGRESQL_USERNAME
-              value: keycloak
+              value: monarka
             - name: POSTGRESQL_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: keycloak-secrets
+                  name: api-secrets
                   key: db-password
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: keycloak-db-service
+  name: api-db-service
 spec:
   selector:
-    app: keycloak-db
+    app: api-db
   ports:
     - protocol: TCP
-      port: 5432
+      port: 5433
       targetPort: 5432
