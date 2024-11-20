@@ -45,7 +45,6 @@ kind: Service
 metadata:
   name: keycloak-service
 spec:
-  type: LoadBalancer
   selector:
     app: keycloak
   ports:
