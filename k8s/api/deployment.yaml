@@ -48,7 +48,8 @@ spec:
             - name: KEYCLOAK_ISSUER_API
               value: 'http://localhost:8484/realms/monarka'
             - name: KEYCLOAK_GRANT_TYPE
-              value: 'refresh_token'
+              value: 'password'
+              # value: 'refresh_token'
           ports:
             - containerPort: 8585
 ---
