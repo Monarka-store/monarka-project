@@ -51,3 +51,5 @@ spec:
   ports:
     - port: 8484
       targetPort: 8484
+status:
+  loadBalancer: {}
