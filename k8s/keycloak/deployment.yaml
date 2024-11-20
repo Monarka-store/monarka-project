@@ -24,19 +24,17 @@ spec:
             - name: KEYCLOAK_DATABASE_USER
               value: keycloak
             - name: KEYCLOAK_DATABASE_PASSWORD
-              value: M1thr4nd1r
-              # valueFrom:
-              #   secretKeyRef:
-              #     name: keycloak-db-secret
-              #     key: db-password
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-db-secret
+                  key: db-password
             - name: KEYCLOAK_ADMIN_USER
               value: admin
             - name: KEYCLOAK_ADMIN_PASSWORD
-              value: admin
-              # valueFrom:
-              #   secretKeyRef:
-              #     name: keycloak-db-secret
-              #     key: admin-password
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-admin-secret
+                  key: admin-password
           ports:
             - containerPort: 8080
 ---

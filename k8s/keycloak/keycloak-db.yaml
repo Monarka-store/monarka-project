@@ -17,16 +17,15 @@ spec:
         - name: keycloak-db
           image: bitnami/postgresql:14
           env:
-            - name: POSTGRES_DB
+            - name: POSTGRESQL_DATABASE
               value: keycloak
-            - name: POSTGRES_USER
+            - name: POSTGRESQL_USERNAME
               value: keycloak
-            - name: POSTGRES_PASSWORD
-              value: M1thr4nd1r
-              # valueFrom:
-              #   secretKeyRef:
-              #     name: keycloak-db-secret
-              #     key: db-password
+            - name: POSTGRESQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-db-secret
+                  key: db-password
 ---
 apiVersion: v1
 kind: Service
