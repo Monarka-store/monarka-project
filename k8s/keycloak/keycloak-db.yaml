@@ -1,3 +1,14 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: keycloak-db-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -13,6 +24,10 @@ spec:
         app: keycloak-db
     spec:
       automountServiceAccountToken: false
+      volumes:
+        - name: db-data
+          persistentVolumeClaim:
+            claimName: keycloak-db-pvc
       containers:
         - name: keycloak-db
           image: bitnami/postgresql:14
