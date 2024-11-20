@@ -12,18 +12,19 @@ kubectl port-forward svc/argocd-server 8080:443 -n argocd
 # login with admin user and below token (as in documentation):
 kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 --decode && echo
 
-# begin applications
-cd argocd-apps
+# config Azure Container Registries
 
-kubectl apply -f keycloak-app.yaml
-
-kubectl apply -f api-app.yaml
 kubectl create secret docker-registry acr-secret \
-  --docker-server=monarkastoreapirn.azurecr.io \
+  --docker-server=<your-acr-loginserver>.azurecr.io \
   --docker-username=<your-acr-username> \
   --docker-password=<your-acr-password> \
   --docker-email=<your-email>
 
+# begin applications
+cd argocd-apps
+
+kubectl apply -f keycloak-app.yaml
+kubectl apply -f api-app.yaml
 kubectl apply -f client-app.yaml
 
 # delete all argocd
