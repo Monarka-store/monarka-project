@@ -52,8 +52,13 @@ spec:
               # value: 'refresh_token'
           ports:
             - containerPort: 8585
+          command: ['/bin/sh']
           args:
-            - '$(DATABASE_URL)'
+            - '-c'
+            - |
+              npx prisma migrate deploy && \
+              npx prisma generate && \
+              node dist/main.js
 ---
 apiVersion: v1
 kind: Service
