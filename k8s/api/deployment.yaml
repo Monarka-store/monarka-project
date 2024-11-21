@@ -52,8 +52,7 @@ spec:
               # value: 'refresh_token'
           ports:
             - containerPort: 8585
-          args:
-            - 'DATABASE_URL=$(DATABASE_URL)'
+          args: ['--database-url=$(API_DATABASE_URL)']
 ---
 apiVersion: v1
 kind: Service
