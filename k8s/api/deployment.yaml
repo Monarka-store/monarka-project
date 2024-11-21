@@ -46,7 +46,7 @@ spec:
                   name: api-secrets
                   key: keycloak-client-secret-api
             - name: KEYCLOAK_ISSUER_API
-              value: 'http://localhost:8484/realms/monarka'
+              value: 'http://keycloak-service:8484/realms/monarka'
             - name: KEYCLOAK_GRANT_TYPE
               value: 'password'
               # value: 'refresh_token'
