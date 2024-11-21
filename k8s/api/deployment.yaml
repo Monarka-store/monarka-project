@@ -18,6 +18,8 @@ spec:
       containers:
         - name: api
           image: monarkastoreapirn.azurecr.io/monarka-api:latest
+          args:
+            - 'export API_DATABASE_URL=$(DATABASE_URL)'
           env:
             - name: NODE_ENV
               value: 'production'
@@ -52,8 +54,6 @@ spec:
               # value: 'refresh_token'
           ports:
             - containerPort: 8585
-          args:
-            - 'export API_DATABASE_URL=$(DATABASE_URL)'
 ---
 apiVersion: v1
 kind: Service
