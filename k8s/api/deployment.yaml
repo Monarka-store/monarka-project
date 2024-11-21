@@ -58,7 +58,6 @@ spec:
             - |
               apt-get update && \
               apt-get install -y coreutils && \
-              cp /usr/bin/base64 /workdir/base64 && \
               export API_DATABASE_URL=$(echo $DATABASE_URL | base64 -d) && \
               npx prisma migrate deploy && \
               npx prisma generate && \
