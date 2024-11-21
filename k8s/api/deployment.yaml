@@ -53,7 +53,7 @@ spec:
           ports:
             - containerPort: 8585
           args:
-            - '--database-url=$(DATABASE_URL)'
+            - 'DATABASE_URL=$(DATABASE_URL)'
 ---
 apiVersion: v1
 kind: Service
