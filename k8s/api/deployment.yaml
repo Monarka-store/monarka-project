@@ -19,36 +19,36 @@ spec:
         - name: api
           image: monarkastoreapirn.azurecr.io/monarka-api:latest
           env:
-            - name: NODE_ENV
-              value: 'production'
+            # - name: NODE_ENV
+            #   value: 'production'
             - name: PORT
               value: '8585'
-            - name: DATABASE_URL
-              valueFrom:
-                secretKeyRef:
-                  name: api-secrets
-                  key: database-url
-            - name: JWT_SECRET
-              valueFrom:
-                secretKeyRef:
-                  name: api-secrets
-                  key: jwt-secret
-            - name: KEYCLOAK_JWT_SECRET
-              valueFrom:
-                secretKeyRef:
-                  name: api-secrets
-                  key: keycloak-jwt-secret
-            - name: KEYCLOAK_CLIENT_ID_API
-              value: 'nestjs'
-            - name: KEYCLOAK_CLIENT_SECRET_API
-              valueFrom:
-                secretKeyRef:
-                  name: api-secrets
-                  key: keycloak-client-secret-api
+            # - name: DATABASE_URL
+            #   valueFrom:
+            #     secretKeyRef:
+            #       name: api-secrets
+            #       key: database-url
+            # - name: JWT_SECRET
+            #   valueFrom:
+            #     secretKeyRef:
+            #       name: api-secrets
+            #       key: jwt-secret
+            # - name: KEYCLOAK_JWT_SECRET
+            #   valueFrom:
+            #     secretKeyRef:
+            #       name: api-secrets
+            #       key: keycloak-jwt-secret
+            # - name: KEYCLOAK_CLIENT_ID_API
+            #   value: 'nestjs'
+            # - name: KEYCLOAK_CLIENT_SECRET_API
+            #   valueFrom:
+            #     secretKeyRef:
+            #       name: api-secrets
+            #       key: keycloak-client-secret-api
             - name: KEYCLOAK_ISSUER_API
               value: 'http://keycloak-service:8484/realms/monarka'
-            - name: KEYCLOAK_GRANT_TYPE
-              value: 'refresh_token'
+            # - name: KEYCLOAK_GRANT_TYPE
+            #   value: 'refresh_token'
           ports:
             - containerPort: 8585
 ---
