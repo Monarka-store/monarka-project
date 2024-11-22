@@ -33,22 +33,22 @@ spec:
                 secretKeyRef:
                   name: api-secrets
                   key: jwt-secret
-            # - name: KEYCLOAK_JWT_SECRET
-            #   valueFrom:
-            #     secretKeyRef:
-            #       name: api-secrets
-            #       key: keycloak-jwt-secret
-            # - name: KEYCLOAK_CLIENT_ID_API
-            #   value: 'nestjs'
-            # - name: KEYCLOAK_CLIENT_SECRET_API
-            #   valueFrom:
-            #     secretKeyRef:
-            #       name: api-secrets
-            #       key: keycloak-client-secret-api
+            - name: KEYCLOAK_JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: api-secrets
+                  key: keycloak-jwt-secret
+            - name: KEYCLOAK_CLIENT_ID_API
+              value: 'nestjs'
+            - name: KEYCLOAK_CLIENT_SECRET_API
+              valueFrom:
+                secretKeyRef:
+                  name: api-secrets
+                  key: keycloak-client-secret-api
             - name: KEYCLOAK_ISSUER_API
               value: 'http://keycloak-service:8484/realms/monarka'
-            # - name: KEYCLOAK_GRANT_TYPE
-            #   value: 'refresh_token'
+            - name: KEYCLOAK_GRANT_TYPE
+              value: 'password'
           ports:
             - containerPort: 8585
 ---
