@@ -28,11 +28,11 @@ spec:
             #     secretKeyRef:
             #       name: api-secrets
             #       key: database-url
-            # - name: JWT_SECRET
-            #   valueFrom:
-            #     secretKeyRef:
-            #       name: api-secrets
-            #       key: jwt-secret
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: api-secrets
+                  key: jwt-secret
             # - name: KEYCLOAK_JWT_SECRET
             #   valueFrom:
             #     secretKeyRef:
