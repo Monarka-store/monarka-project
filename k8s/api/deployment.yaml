@@ -19,8 +19,6 @@ spec:
         - name: api
           image: monarkastoreapirn.azurecr.io/monarka-api:latest
           env:
-            # - name: NODE_ENV
-            #   value: 'production'
             - name: PORT
               value: '8585'
             - name: DATABASE_URL
@@ -39,7 +37,7 @@ spec:
                   name: api-secrets
                   key: keycloak-jwt-secret
             - name: KEYCLOAK_CLIENT_ID_API
-              value: 'nestjs'
+              value: nestjs
             - name: KEYCLOAK_CLIENT_SECRET_API
               valueFrom:
                 secretKeyRef:
