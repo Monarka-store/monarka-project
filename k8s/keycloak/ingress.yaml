@@ -4,7 +4,6 @@ metadata:
   name: keycloak-ingress
   namespace: keycloak
   annotations:
-    # cert-manager.io/cluster-issuer: 'letsencrypt-prod'
     nginx.ingress.kubernetes.io/rewrite-target: /
     nginx.ingress.kubernetes.io/ssl-redirect: 'true'
 spec:
@@ -19,7 +18,3 @@ spec:
                 name: keycloak-service
                 port:
                   number: 8484
-  tls:
-    - hosts:
-        - keycloak.local
-      secretName: tls-secret
