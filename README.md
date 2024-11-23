@@ -33,14 +33,9 @@ kubectl delete all -l app.kubernetes.io/part-of=argocd -n argocd
 # use local host and certificate
 
 ```
-# add repositories of nginx
-helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
-helm repo add jetstack https://charts.jetstack.io
-helm repo update
-
 # config /etc/hosts
 sudo nano /etc/hosts
-127.0.0.1 keycloak.local
+127.0.0.1 keycloak.monarka.local
 ```
 
 # K8s commands
