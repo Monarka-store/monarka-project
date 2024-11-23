@@ -12,7 +12,7 @@ spec:
     targetRevision: v1.12.2
     helm:
       valueFiles:
-        - cert-manager-values.yaml
+        - k8s/cert-manager/cert-manager-values.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: default
