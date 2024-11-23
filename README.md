@@ -30,6 +30,23 @@ kubectl apply -f client-app.yaml
 kubectl delete all -l app.kubernetes.io/part-of=argocd -n argocd
 ```
 
+# use local host
+
+```
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+helm repo update
+
+# init host
+helm install nginx-ingress ingress-nginx/ingress-nginx
+
+# config /etc/hosts
+sudo nano /etc/hosts
+127.0.0.1 keycloak.local
+
+# shutdown host
+helm uninstall nginx-ingress
+```
+
 # K8s commands
 
 - Obtener pods, deployments y services: `kubectl get <pods | deployments | services>`

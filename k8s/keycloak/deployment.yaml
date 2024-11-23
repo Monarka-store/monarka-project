@@ -43,7 +43,7 @@ kind: Service
 metadata:
   name: keycloak-service
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   selector:
     app: keycloak
   ports:
