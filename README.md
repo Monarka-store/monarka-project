@@ -33,6 +33,9 @@ kubectl delete all -l app.kubernetes.io/part-of=argocd -n argocd
 # use local host and certificate
 
 ```
+# install cert-manager
+kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.13.0/cert-manager.yaml
+
 # config /etc/hosts
 sudo nano /etc/hosts
 127.0.0.1 keycloak.monarka.local
