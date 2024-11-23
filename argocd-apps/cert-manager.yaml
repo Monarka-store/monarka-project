@@ -5,6 +5,7 @@ metadata:
   namespace: argocd
 spec:
   project: default
+
   source:
     repoURL: https://charts.jetstack.io
     chart: cert-manager
@@ -14,7 +15,8 @@ spec:
         - cert-manager-values.yaml
   destination:
     server: https://kubernetes.default.svc
-    namespace: cert-manager
+    namespace: default
+
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
