@@ -30,11 +30,12 @@ kubectl apply -f client-app.yaml
 kubectl delete all -l app.kubernetes.io/part-of=argocd -n argocd
 ```
 
-# use local host and certificate
+# use local host
 
 ```
 # install cert-manager
 kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.13.0/cert-manager.yaml
+kubectl delete -f https://github.com/cert-manager/cert-manager/releases/download/v1.13.0/cert-manager.yaml
 
 # config /etc/hosts
 sudo nano /etc/hosts
