@@ -3,6 +3,10 @@ kind: Deployment
 metadata:
   name: keycloak
 spec:
+  externalAccess:
+    enabled: true
+    host: keycloak.monarka.local
+
   replicas: 1
   selector:
     matchLabels:
