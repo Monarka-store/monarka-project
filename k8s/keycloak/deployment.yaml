@@ -16,6 +16,12 @@ spec:
       containers:
         - name: keycloak
           image: bitnami/keycloak:26
+          args:
+            [
+              'start',
+              '--cache-stack=kubernetes',
+              '--spi-login-protocol-openid-connect-legacy-logout-redirect-uri=true',
+            ]
           env:
             - name: KEYCLOAK_DATABASE_HOST
               value: keycloak-db-service
@@ -35,8 +41,21 @@ spec:
                 secretKeyRef:
                   name: keycloak-secrets
                   key: admin-password
+            - name: KC_PROXY
+              value: 'edge'
+            - name: KC_PROXY_ADDRESS_FORWARDING
+              value: 'true'
+            - name: KC_HEALTH_ENABLED
+              value: 'true'
+            - name: KC_METRICS_ENABLED
+              value: 'true'
+            - name: KC_HTTP_ENABLED
+              value: 'true'
           ports:
-            - containerPort: 8080
+            - name: http
+              containerPort: 8080
+            - name: https
+              containerPort: 8443
 ---
 apiVersion: v1
 kind: Service
@@ -44,8 +63,13 @@ metadata:
   name: keycloak-service
 spec:
   type: ClusterIP
+  ClusterIP: None
   selector:
     app: keycloak
   ports:
-    - port: 8484
+    - name: http
+      port: 8484
       targetPort: 8080
+    - name: https
+      port: 8443
+      targetPort: 8443
