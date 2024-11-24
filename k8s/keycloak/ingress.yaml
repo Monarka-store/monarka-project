@@ -4,6 +4,8 @@ metadata:
   name: keycloak-ingress
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/use-forwarded-headers: 'true'
+    nginx.ingress.kubernetes.io/proxy-set-headers: 'nginx-proxy-headers'
 spec:
   ingressClassName: nginx
   rules:
