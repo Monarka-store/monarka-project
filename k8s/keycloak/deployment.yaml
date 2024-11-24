@@ -18,7 +18,6 @@ spec:
           image: bitnami/keycloak:26
           args:
             [
-              'start',
               '--cache-stack=kubernetes',
               '--spi-login-protocol-openid-connect-legacy-logout-redirect-uri=true',
             ]
