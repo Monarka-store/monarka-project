@@ -22,7 +22,7 @@ spec:
                 name: keycloak
                 port:
                   number: 80
-            path: /auth
+            path: /
             pathType: ImplementationSpecific
   tls:
     - hosts:
