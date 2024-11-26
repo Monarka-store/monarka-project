@@ -37,10 +37,7 @@ kubectl delete all -l app.kubernetes.io/part-of=argocd -n argocd
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.12.0-beta.0/deploy/static/provider/cloud/deploy.yaml
 kubectl delete -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.12.0-beta.0/deploy/static/provider/cloud/deploy.yaml
 
-# install cert-manager
-kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.13.0/cert-manager.yaml
-kubectl delete -f https://github.com/cert-manager/cert-manager/releases/download/v1.13.0/cert-manager.yaml
-
+# create certificates
 openssl genrsa -out rootCA.key 2048 #Generate a Certificate Authority (CA) key.
 openssl req -x509 -new -nodes -key rootCA.key -sha256 -days 3650 -out rootCA.crt #Generate a CA certificate.
 openssl genrsa -out server.key 2048 #Generate a server key.
