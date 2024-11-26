@@ -51,15 +51,9 @@ spec:
             - name: POSTGRESQL_DATABASE
               value: keycloak
             - name: POSTGRESQL_USERNAME
-              valueFrom:
-                secretKeyRef:
-                  name: keycloak-secrets
-                  key: db_username
+              value: keycloak
             - name: POSTGRESQL_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: keycloak-secrets
-                  key: db_password
+              value: keycloak
 ---
 apiVersion: v1
 kind: Service
