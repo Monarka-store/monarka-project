@@ -31,8 +31,6 @@ spec:
                   name: keycloak-secret
             - name: KC_PROXY
               value: edge
-            - name: KEYCLOAK_DATABASE_HOST
-              value: keycloak-db-service
             - name: KEYCLOAK_DATABASE_NAME
               value: keycloak
             - name: KEYCLOAK_DATABASE_USER
@@ -45,6 +43,8 @@ spec:
                 secretKeyRef:
                   key: db_password
                   name: keycloak-secret
+            - name: KEYCLOAK_DATABASE_HOST
+              value: keycloak-db-service
           ports:
             - name: http
               containerPort: 8080
