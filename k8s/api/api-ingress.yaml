@@ -15,7 +15,7 @@ spec:
         paths:
           - backend:
               service:
-                name: api-service
+                name: api
                 port:
                   number: 8585
             path: /
