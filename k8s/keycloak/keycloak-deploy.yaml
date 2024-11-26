@@ -4,6 +4,7 @@ metadata:
   labels:
     app: keycloak
   name: keycloak
+  namespace: default
 spec:
   selector:
     matchLabels:
@@ -13,39 +14,47 @@ spec:
       labels:
         app: keycloak
     spec:
-      automountServiceAccountToken: false
       containers:
-        - image: bitnami/keycloak:26
-          imagePullPolicy: Always
-          name: keycloak
+        - args:
+            - start-dev
           env:
-            - name: KC_BOOTSTRAP_ADMIN_USERNAME
+            - name: KEYCLOAK_ADMIN
               valueFrom:
                 secretKeyRef:
-                  name: keycloak-secrets
                   key: keycloak_admin
-            - name: KC_BOOTSTRAP_ADMIN_PASSWORD
+                  name: keycloak-secret
+            - name: KEYCLOAK_ADMIN_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: keycloak-secrets
                   key: keycloak_admin_password
+                  name: keycloak-secret
             - name: KC_PROXY
               value: edge
-            - name: KEYCLOAK_DATABASE_NAME
-              value: keycloak
-            - name: KEYCLOAK_DATABASE_USER
+            - name: KC_DB_URL_HOST
               valueFrom:
                 secretKeyRef:
-                  name: keycloak-secrets
+                  key: db_url
+                  name: keycloak-secret
+            - name: KC_DB
+              value: mysql
+            - name: KC_DB_USERNAME
+              valueFrom:
+                secretKeyRef:
                   key: db_username
-            - name: KEYCLOAK_DATABASE_PASSWORD
+                  name: keycloak-secret
+            - name: KC_DB_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: keycloak-secrets
-                  key: db_password
-            - name: KEYCLOAK_DATABASE_HOST
-              value: keycloak-db-service
+                  key: db_passwd
+                  name: keycloak-secret
+          image: 'quay.io/keycloak/keycloak:26'
+          imagePullPolicy: Always
+          name: keycloak
           ports:
-            - name: http
-              containerPort: 8080
+            - containerPort: 8080
+              name: http
               protocol: TCP
+          readinessProbe:
+            httpGet:
+              path: /realms/master
+              port: 8080
