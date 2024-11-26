@@ -7,9 +7,10 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
     nginx.ingress.kubernetes.io/ssl-redirect: 'true'
-    nginx.ingress.kubernetes.io/proxy-ssl-name: 'keycloak.monarka.local'
-    nginx.ingress.kubernetes.io/use-regex: 'true'
-    nginx.ingress.kubernetes.io/listen-ports: '[{"name":"http","port":80},{"name":"https","port":443}]'
+    nginx.ingress.kubernetes.io/proxy-buffer-size: '256k'
+    nginx.ingress.kubernetes.io/proxy-buffers-number: '4'
+    nginx.ingress.kubernetes.io/proxy-busy-buffers-size: '512k'
+    nginx.ingress.kubernetes.io/proxy-body-size: '3000M'
 spec:
   ingressClassName: nginx
   rules:
@@ -21,7 +22,7 @@ spec:
                 name: keycloak
                 port:
                   number: 80
-            path: /
+            path: /auth
             pathType: ImplementationSpecific
   tls:
     - hosts:
