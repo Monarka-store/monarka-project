@@ -54,7 +54,3 @@ spec:
             - containerPort: 8080
               name: http
               protocol: TCP
-          readinessProbe:
-            httpGet:
-              path: /realms/master
-              port: 8080
