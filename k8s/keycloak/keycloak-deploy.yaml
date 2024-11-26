@@ -35,8 +35,6 @@ spec:
                 secretKeyRef:
                   key: db_url
                   name: keycloak-secret
-            - name: KC_DB
-              value: postgres
             - name: KC_DB_USERNAME
               valueFrom:
                 secretKeyRef:
