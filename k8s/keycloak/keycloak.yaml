@@ -4,7 +4,6 @@ metadata:
   labels:
     app: keycloak
   name: keycloak
-  namespace: default
 spec:
   ports:
     - name: http
