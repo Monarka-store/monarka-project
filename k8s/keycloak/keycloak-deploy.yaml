@@ -22,12 +22,12 @@ spec:
             - name: KC_BOOTSTRAP_ADMIN_USERNAME
               valueFrom:
                 secretKeyRef:
-                  key: keycloak_admin
+                  key: keycloak-admin
                   name: keycloak-secret
             - name: KC_BOOTSTRAP_ADMIN_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  key: keycloak_admin_password
+                  key: keycloak-admin-password
                   name: keycloak-secret
             - name: KC_PROXY
               value: edge
@@ -36,12 +36,12 @@ spec:
             - name: KEYCLOAK_DATABASE_USER
               valueFrom:
                 secretKeyRef:
-                  key: db_username
+                  key: db-username
                   name: keycloak-secret
             - name: KEYCLOAK_DATABASE_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  key: db_password
+                  key: db-password
                   name: keycloak-secret
             - name: KEYCLOAK_DATABASE_HOST
               value: 'keycloak-db-service'
