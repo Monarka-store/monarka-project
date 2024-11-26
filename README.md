@@ -38,11 +38,14 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/cont
 kubectl delete -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.12.0-beta.0/deploy/static/provider/cloud/deploy.yaml
 
 # create certificates
+1..
 openssl genrsa -out rootCA.key 2048 #Generate a Certificate Authority (CA) key.
 openssl req -x509 -new -nodes -key rootCA.key -sha256 -days 3650 -out rootCA.crt #Generate a CA certificate.
 openssl genrsa -out server.key 2048 #Generate a server key.
 openssl req -new -key server.key -out server.csr
 openssl x509 -req -in server.csr -CA rootCA.crt -CAkey rootCA.key -CAcreateserial -out server.crt -days 3650 -sha256 -extensions v3_req -extfile <(echo '[v3_req]'; echo 'subjectAltName = DNS:${Service domain name}')
+2..
+openssl req -x509 -nodes -days 730 -newkey rsa:2048 -keyout tls.key -out tls.crt -config sslcert.conf -extensions 'v3_req'
 
 # config /etc/hosts
 sudo nano /etc/hosts
