@@ -8,11 +8,11 @@ metadata:
 spec:
   ports:
     - name: http
-      port: 31716
+      port: 31977
       protocol: TCP
       targetPort: 8080
     - name: https
-      port: 30693
+      port: 31383
       protocol: TCP
       targetPort: 8443
   selector:
