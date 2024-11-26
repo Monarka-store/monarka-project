@@ -2,8 +2,8 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: keycloak
-  name: keycloak
+    app: keycloak-service
+  name: keycloak-service
 spec:
   ports:
     - name: http
