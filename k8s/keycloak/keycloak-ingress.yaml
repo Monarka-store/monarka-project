@@ -4,6 +4,11 @@ metadata:
   labels:
     ingress-controller: nginx
   name: keycloak-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: 'true'
+    nginx.ingress.kubernetes.io/proxy-ssl-name: 'keycloak.monarka.local'
+    nginx.ingress.kubernetes.io/use-regex: 'true'
 spec:
   ingressClassName: nginx
   rules:
