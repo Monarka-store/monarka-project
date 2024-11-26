@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  labels:
+    ingress-controller: nginx
+  name: keycloak-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: keycloak.monarka.local
+      http:
+        paths:
+          - backend:
+              service:
+                name: keycloak
+                port:
+                  number: 80
+            path: /
+            pathType: ImplementationSpecific
+  tls:
+    - hosts:
+        - keycloak.monarka.local
+      secretName: keycloak-pki

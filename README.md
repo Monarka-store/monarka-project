@@ -41,6 +41,12 @@ kubectl delete -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/con
 kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.13.0/cert-manager.yaml
 kubectl delete -f https://github.com/cert-manager/cert-manager/releases/download/v1.13.0/cert-manager.yaml
 
+openssl genrsa -out rootCA.key 2048 #Generate a Certificate Authority (CA) key.
+openssl req -x509 -new -nodes -key rootCA.key -sha256 -days 3650 -out rootCA.crt #Generate a CA certificate.
+openssl genrsa -out server.key 2048 #Generate a server key.
+openssl req -new -key server.key -out server.csr
+openssl x509 -req -in server.csr -CA rootCA.crt -CAkey rootCA.key -CAcreateserial -out server.crt -days 3650 -sha256 -extensions v3_req -extfile <(echo '[v3_req]'; echo 'subjectAltName = DNS:${Service domain name}')
+
 # config /etc/hosts
 sudo nano /etc/hosts
 127.0.0.1 keycloak.monarka.local

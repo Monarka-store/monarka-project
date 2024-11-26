@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: keycloak
+  name: keycloak
+spec:
+  selector:
+    matchLabels:
+      app: keycloak
+  template:
+    metadata:
+      labels:
+        app: keycloak
+    spec:
+      automountServiceAccountToken: false
+      containers:
+        - args:
+            - start-dev
+          env:
+            - name: KC_BOOTSTRAP_ADMIN_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  key: keycloak_admin
+                  name: keycloak-secret
+            - name: KC_BOOTSTRAP_ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: keycloak_admin_password
+                  name: keycloak-secret
+            - name: KC_PROXY
+              value: edge
+            - name: KEYCLOAK_DATABASE_HOST
+              value: keycloak-db-service
+            - name: KEYCLOAK_DATABASE_NAME
+              value: keycloak
+            - name: KEYCLOAK_DATABASE_USER
+              valueFrom:
+                secretKeyRef:
+                  key: db_username
+                  name: keycloak-secret
+            - name: KEYCLOAK_DATABASE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: db_password
+                  name: keycloak-secret
+          image: bitnami/keycloak:26
+          imagePullPolicy: Always
+          name: keycloak
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          readinessProbe:
+            httpGet:
+              path: /realms/master
+              port: 8080
