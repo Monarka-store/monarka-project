@@ -16,6 +16,7 @@ spec:
       automountServiceAccountToken: false
       containers:
         - image: bitnami/keycloak:26
+          imagePullPolicy: Always
           name: keycloak
           env:
             - name: KC_BOOTSTRAP_ADMIN_USERNAME
