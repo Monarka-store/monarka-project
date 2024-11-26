@@ -18,6 +18,7 @@ spec:
         - name: acr-secret
       containers:
         - name: api
+          imagePullPolicy: Always
           image: monarkastoreapirn.azurecr.io/monarka-api:latest
           env:
             - name: PORT
