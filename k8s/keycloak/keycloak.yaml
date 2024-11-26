@@ -17,4 +17,4 @@ spec:
       targetPort: 8443
   selector:
     app: keycloak
-  type: NodePort
+  type: ClusterIP
