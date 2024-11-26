@@ -15,9 +15,7 @@ spec:
     spec:
       automountServiceAccountToken: false
       containers:
-        - args:
-            - start-dev
-          env:
+        - env:
             - name: KC_BOOTSTRAP_ADMIN_USERNAME
               valueFrom:
                 secretKeyRef:
