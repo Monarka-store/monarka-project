@@ -22,26 +22,29 @@ spec:
             - name: KC_BOOTSTRAP_ADMIN_USERNAME
               valueFrom:
                 secretKeyRef:
-                  key: keycloak-admin
-                  name: keycloak-secret
+                  name: keycloak-secrets
+                  key: keycloak_admin
             - name: KC_BOOTSTRAP_ADMIN_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  key: keycloak-admin-password
-                  name: keycloak-secret
+                  name: keycloak-secrets
+                  key: keycloak_admin_password
             - name: KC_PROXY
               value: edge
             - name: KEYCLOAK_DATABASE_NAME
               value: keycloak
             - name: KEYCLOAK_DATABASE_USER
-              value: keycloak
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-secrets
+                  key: db_username
             - name: KEYCLOAK_DATABASE_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  key: db-password
-                  name: keycloak-secret
+                  name: keycloak-secrets
+                  key: db_password
             - name: KEYCLOAK_DATABASE_HOST
-              value: 'keycloak-db-service'
+              value: keycloak-db-service
           ports:
             - name: http
               containerPort: 8080
