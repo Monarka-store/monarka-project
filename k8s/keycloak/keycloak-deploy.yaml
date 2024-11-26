@@ -45,9 +45,6 @@ spec:
                 secretKeyRef:
                   key: db_password
                   name: keycloak-secret
-          image: bitnami/keycloak:26
-          imagePullPolicy: Always
-          name: keycloak
           ports:
             - name: http
               containerPort: 8080
