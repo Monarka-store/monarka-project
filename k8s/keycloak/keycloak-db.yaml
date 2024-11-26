@@ -49,12 +49,9 @@ spec:
               mountPath: /bitnami/postgresql
           env:
             - name: POSTGRESQL_DATABASE
-              value: 'keycloak'
+              value: keycloak
             - name: POSTGRESQL_USERNAME
-              valueFrom:
-                secretKeyRef:
-                  key: db-username
-                  name: keycloak-secret
+              value: keycloak
             - name: POSTGRESQL_PASSWORD
               valueFrom:
                 secretKeyRef:

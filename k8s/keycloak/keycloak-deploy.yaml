@@ -32,12 +32,9 @@ spec:
             - name: KC_PROXY
               value: edge
             - name: KEYCLOAK_DATABASE_NAME
-              value: 'keycloak'
+              value: keycloak
             - name: KEYCLOAK_DATABASE_USER
-              valueFrom:
-                secretKeyRef:
-                  key: db-username
-                  name: keycloak-secret
+              value: keycloak
             - name: KEYCLOAK_DATABASE_PASSWORD
               valueFrom:
                 secretKeyRef:
