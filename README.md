@@ -41,7 +41,7 @@ kubectl delete -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/con
 openssl req -x509 -sha256 -nodes -days 365 -newkey rsa:2048 -keyout tls.key -out tls.crt -subj "/CN=monarka.local" \
   -extensions SAN \
   -config <(echo "[req]"; echo distinguished_name=req; echo "[SAN]"; echo "subjectAltName=DNS:*.monarka.local,DNS:monarka.local")
-k create secret tls pki-secret --key tls.key --cert tls.crt
+kubectl create secret tls pki-secret --key tls.key --cert tls.crt
 
 # config /etc/hosts
 sudo nano /etc/hosts
