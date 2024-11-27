@@ -17,6 +17,9 @@ spec:
       containers:
         - args:
             - start
+            - --hostname=keycloak.monarka.local
+            - --hostname-strict=false
+            - --proxy=edge
           env:
             - name: KC_BOOTSTRAP_ADMIN_USERNAME
               valueFrom:
@@ -28,14 +31,6 @@ spec:
                 secretKeyRef:
                   key: keycloak_admin_password
                   name: keycloak-secret
-            - name: KC_PROXY
-              value: edge
-            - name: KC_PROFILE
-              value: production
-            - name: KC_HOSTNAME
-              value: keycloak.monarka.local
-            - name: KC_HOSTNAME_STRICT
-              value: 'false'
             - name: KC_DB_URL_HOST
               valueFrom:
                 secretKeyRef:

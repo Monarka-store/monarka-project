@@ -19,8 +19,9 @@ spec:
                 port:
                   number: 80
             path: /
-            pathType: ImplementationSpecific
-  # tls:
-  #   - hosts:
-  #       - keycloak.monarka.local
-  #     secretName: keycloak-pki
+            pathType: Prefix
+            # pathType: ImplementationSpecific
+  tls:
+    - hosts:
+        - keycloak.monarka.local
+      secretName: keycloak-pki
