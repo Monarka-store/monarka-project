@@ -59,6 +59,3 @@ spec:
             - name: http
               containerPort: 3000
               protocol: TCP
-            - name: https
-              containerPort: 3001
-              protocol: TCP
