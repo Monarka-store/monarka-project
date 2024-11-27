@@ -7,8 +7,6 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
     nginx.ingress.kubernetes.io/ssl-redirect: 'true'
-    nginx.ingress.kubernetes.io/configuration-snippet: |
-      add_header Content-Security-Policy "frame-src 'self' https://keycloak.monarka.local;";
 spec:
   ingressClassName: nginx
   rules:
