@@ -5,8 +5,8 @@ metadata:
     ingress-controller: nginx
   name: keycloak-ingress
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
-    # nginx.ingress.kubernetes.io/ssl-redirect: 'true'
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/ssl-passthrough: 'true'
 spec:
   ingressClassName: nginx
   rules:
@@ -17,10 +17,9 @@ spec:
               service:
                 name: keycloak
                 port:
-                  number: 80
+                  number: 443
             path: /
-            pathType: Prefix
-            # pathType: ImplementationSpecific
+            pathType: ImplementationSpecific
   tls:
     - hosts:
         - keycloak.monarka.local
