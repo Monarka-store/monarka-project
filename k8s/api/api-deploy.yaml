@@ -14,6 +14,10 @@ spec:
       labels:
         app: api
     spec:
+      volumes:
+        - name: pki-secret-volume
+          secret:
+            secretName: pki-secret
       imagePullSecrets:
         - name: acr-secret
       containers:
@@ -55,6 +59,10 @@ spec:
                 secretKeyRef:
                   key: keycloak_grant_type
                   name: api-secret
+          volumeMounts:
+            - name: pki-secret-volume
+              mountPath: '/etc/ssl/certs'
+              readOnly: true
           ports:
             - name: http
               containerPort: 8585
