@@ -7,6 +7,10 @@ metadata:
   namespace: default
 spec:
   ports:
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: 8585
     - name: https
       port: 443
       protocol: TCP
