@@ -32,6 +32,10 @@ spec:
               value: edge
             - name: KC_PROFILE
               value: production
+            - name: KC_HOSTNAME
+              value: keycloak.monarka.local
+            - name: KC_HOSTNAME_STRICT
+              value: 'false'
             - name: KC_DB_URL_HOST
               valueFrom:
                 secretKeyRef:
