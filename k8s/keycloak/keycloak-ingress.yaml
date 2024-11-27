@@ -22,5 +22,5 @@ spec:
             pathType: ImplementationSpecific
   tls:
     - hosts:
-        - keycloak.monarka.local
+        - fake
       secretName: keycloak-pki
