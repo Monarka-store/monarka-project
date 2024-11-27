@@ -26,4 +26,4 @@ spec:
   tls:
     - hosts:
         - keycloak.monarka.local
-      secretName: keycloak-pki
+      secretName: pki-secret

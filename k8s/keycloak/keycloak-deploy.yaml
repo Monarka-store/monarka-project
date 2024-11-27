@@ -15,9 +15,9 @@ spec:
         app: keycloak
     spec:
       volumes:
-        - name: keycloak-pki-volume
+        - name: pki-secret-volume
           secret:
-            secretName: keycloak-pki
+            secretName: pki-secret
       containers:
         - args:
             - start
@@ -57,7 +57,7 @@ spec:
           imagePullPolicy: Always
           name: keycloak
           volumeMounts:
-            - name: keycloak-pki-volume
+            - name: pki-secret-volume
               mountPath: '/etc/x509/https'
               readOnly: true
           ports:

@@ -38,8 +38,11 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/cont
 kubectl delete -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.12.0-beta.0/deploy/static/provider/cloud/deploy.yaml
 
 # create certificates
-openssl req -x509 -sha256 -nodes -days 365 -newkey rsa:2048 -keyout tls.key -out tls.crt -subj "/CN=keycloak.monarka.local"
-k create secret tls keycloak-pki --key tls.key --cert tls.crt
+openssl req -x509 -sha256 -nodes -days 365 -newkey rsa:2048 -keyout tls.key -out tls.crt -subj "/CN=*.monarka.local"
+openssl req -x509 -sha256 -nodes -days 365 -newkey rsa:2048 -keyout tls.key -out tls.crt -subj "/CN=monarka.local" \
+  -extensions SAN \
+  -config <(echo "[req]"; echo distinguished_name=req; echo "[SAN]"; echo "subjectAltName=DNS:*.monarka.local,DNS:monarka.local")
+k create secret tls pki-secret --key tls.key --cert tls.crt
 
 # config /etc/hosts
 sudo nano /etc/hosts

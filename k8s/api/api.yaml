@@ -7,9 +7,14 @@ metadata:
   namespace: default
 spec:
   ports:
-    - port: 8585
+    - name: http
+      port: 8585
       protocol: TCP
       targetPort: 8585
+    # - name: https
+    #   port: 443
+    #   protocol: TCP
+    #   targetPort: 8443
   selector:
     app: api
   type: ClusterIP
