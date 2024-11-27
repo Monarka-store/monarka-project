@@ -49,7 +49,8 @@ spec:
                   key: keycloak_client_secret_api
                   name: api-secret
             - name: KEYCLOAK_ISSUER_API
-              value: 'http://keycloak.default.svc.cluster.local/realms/monarka'
+              # value: 'http://keycloak.default.svc.cluster.local/realms/monarka'
+              value: 'https://keycloak.monarka.local/realms/monarka'
             - name: KEYCLOAK_GRANT_TYPE
               valueFrom:
                 secretKeyRef:
