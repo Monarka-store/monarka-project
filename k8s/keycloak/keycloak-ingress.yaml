@@ -4,9 +4,9 @@ metadata:
   labels:
     ingress-controller: nginx
   name: keycloak-ingress
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
-    nginx.ingress.kubernetes.io/ssl-redirect: 'true'
+  # annotations:
+  #   nginx.ingress.kubernetes.io/rewrite-target: /
+  #   nginx.ingress.kubernetes.io/ssl-redirect: 'true'
 spec:
   ingressClassName: nginx
   rules:
@@ -18,8 +18,8 @@ spec:
                 name: keycloak
                 port:
                   number: 80
-            path: /
-            pathType: ImplementationSpecific
+            # path: /
+            # pathType: ImplementationSpecific
   tls:
     - hosts:
         - fake

@@ -30,10 +30,6 @@ spec:
                   name: keycloak-secret
             - name: KC_PROXY
               value: edge
-            - name: KC_HOSTNAME_STRICT
-              value: 'false'
-            - name: KC_HOSTNAME_STRICT_BACKCHANNEL
-              value: 'false'
             - name: KC_DB_URL_HOST
               valueFrom:
                 secretKeyRef:
