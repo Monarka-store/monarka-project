@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - args:
-            - start-dev
+            - start
           env:
             - name: KC_BOOTSTRAP_ADMIN_USERNAME
               valueFrom:
@@ -30,6 +30,8 @@ spec:
                   name: keycloak-secret
             - name: KC_PROXY
               value: edge
+            - name: KC_PROFILE
+              value: production
             - name: KC_DB_URL_HOST
               valueFrom:
                 secretKeyRef:
