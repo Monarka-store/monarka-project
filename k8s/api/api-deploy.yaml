@@ -49,7 +49,7 @@ spec:
                   key: keycloak_client_secret_api
                   name: api-secret
             - name: KEYCLOAK_ISSUER_API
-              value: 'http://keycloak:80/realms/monarka'
+              value: 'https://keycloak.default.svc.cluster.local/realms/monarka'
             - name: KEYCLOAK_GRANT_TYPE
               valueFrom:
                 secretKeyRef:
