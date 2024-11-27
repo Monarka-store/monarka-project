@@ -22,7 +22,7 @@ spec:
           image: monarkastoreapirn.azurecr.io/monarka-api:latest
           env:
             - name: PORT
-              value: '3000'
+              value: '8585'
             - name: DATABASE_URL
               valueFrom:
                 secretKeyRef:
@@ -57,5 +57,5 @@ spec:
                   name: api-secret
           ports:
             - name: http
-              containerPort: 3000
+              containerPort: 8585
               protocol: TCP
