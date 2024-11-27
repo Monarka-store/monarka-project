@@ -25,6 +25,7 @@ spec:
             - --hostname-strict=false
             - --proxy-headers=xforwarded
             - --https-key-store-file=/etc/x509/https/tls.crt
+            - --https-key-store-password=/etc/x509/https/tls.key
           env:
             - name: KC_BOOTSTRAP_ADMIN_USERNAME
               valueFrom:
