@@ -64,6 +64,6 @@ spec:
               mountPath: '/etc/ssl/certs'
               readOnly: true
           ports:
-            - name: http
-              containerPort: 8585
+            - name: https
+              containerPort: 443
               protocol: TCP
