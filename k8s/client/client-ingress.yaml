@@ -1,0 +1,29 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  labels:
+    ingress-controller: nginx
+  name: client-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-passthrough: 'true'
+    nginx.ingress.kubernetes.io/ssl-redirect: 'true'
+    nginx.ingress.kubernetes.io/backend-protocol: 'HTTPS'
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: monarka.local
+      http:
+        paths:
+          - backend:
+              service:
+                name: client
+                port:
+                  number: 443
+            path: /
+            pathType: ImplementationSpecific
+  tls:
+    - hosts:
+        - monarka.local
+      secretName: pki-secret

@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: client
+  name: client
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: client
+  template:
+    metadata:
+      labels:
+        app: client
+    spec:
+      volumes:
+        - name: pki-secret-volume
+          secret:
+            secretName: pki-secret
+      imagePullSecrets:
+        - name: acr-secret
+      containers:
+        - name: api
+          imagePullPolicy: Always
+          image: monarkastoreapirn.azurecr.io/monarka-client:latest
+          env:
+            - name: KEYCLOAK_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  key: keycloak_client_id
+                  name: client-secret
+            - name: KEYCLOAK_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  key: keycloak_client_secret
+                  name: client-secret
+            - name: KEYCLOAK_ISSUER
+              valueFrom:
+                secretKeyRef:
+                  key: keycloak_issuer
+                  name: client-secret
+            - name: NEXTAUTH_URL
+              valueFrom:
+                secretKeyRef:
+                  key: nextauth_url
+                  name: client-secret
+            - name: NEXTAUTH_SECRET
+              valueFrom:
+                secretKeyRef:
+                  key: nextauth_secret
+                  name: client-secret
+            - name: NEXT_PUBLIC_API_URL
+              valueFrom:
+                secretKeyRef:
+                  key: next_public_api_url
+                  name: client-secret
+          volumeMounts:
+            - name: pki-secret-volume
+              mountPath: '/etc/ssl/certs'
+              readOnly: true
+          ports:
+            - name: https
+              containerPort: 3000
+              protocol: TCP
