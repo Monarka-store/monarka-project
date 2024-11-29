@@ -21,7 +21,7 @@ spec:
       imagePullSecrets:
         - name: acr-secret
       containers:
-        - name: api
+        - name: client
           imagePullPolicy: Always
           image: monarkastoreapirn.azurecr.io/monarka-client:latest
           env:
