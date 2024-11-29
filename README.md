@@ -46,6 +46,8 @@ kubectl create secret tls pki-secret --key tls.key --cert tls.crt
 # config /etc/hosts
 sudo nano /etc/hosts
 127.0.0.1 keycloak.monarka.local
+127.0.0.1 api.monarka.local
+127.0.0.1 www.monarka.local
 ```
 
 # K8s commands
