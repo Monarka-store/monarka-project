@@ -13,7 +13,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: monarka.local
+    - host: www.monarka.local
       http:
         paths:
           - backend:
@@ -25,5 +25,5 @@ spec:
             pathType: ImplementationSpecific
   tls:
     - hosts:
-        - monarka.local
+        - www.monarka.local
       secretName: pki-secret
