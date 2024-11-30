@@ -4,12 +4,14 @@ metadata:
   labels:
     ingress-controller: nginx
   name: keycloak-ingress
+  namespace: monarka
   annotations:
-    kubernetes.io/ingress.class: nginx
-    nginx.ingress.kubernetes.io/rewrite-target: /
-    nginx.ingress.kubernetes.io/ssl-passthrough: 'true'
-    nginx.ingress.kubernetes.io/ssl-redirect: 'true'
-    nginx.ingress.kubernetes.io/backend-protocol: 'HTTPS'
+    # kubernetes.io/ingress.class: nginx
+    # nginx.ingress.kubernetes.io/rewrite-target: /
+    # nginx.ingress.kubernetes.io/ssl-passthrough: 'true'
+    # nginx.ingress.kubernetes.io/ssl-redirect: 'true'
+    # nginx.ingress.kubernetes.io/backend-protocol: 'HTTPS'
+    cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   ingressClassName: nginx
   rules:
@@ -26,4 +28,5 @@ spec:
   tls:
     - hosts:
         - keycloak.monarka.local
-      secretName: pki-secret
+      secretName: letsencrypt-prod
+      # secretName: pki-secret
