@@ -14,13 +14,13 @@ spec:
       labels:
         app: keycloak
     spec:
-      volumes:
-        - name: certifications-volume
-          secret:
-            secretName: cert-manager-webhook-ca
+      # volumes:
+      #   - name: certifications-volume
+      #     secret:
+      #       secretName: cert-manager-webhook-ca
       containers:
         - args:
-            - start
+            - start-dev
             - --hostname=keycloak.monarka.local
             - --hostname-strict=false
             - --proxy-headers=xforwarded
@@ -53,17 +53,13 @@ spec:
                 secretKeyRef:
                   key: db_password
                   name: keycloak-secret
-            - name: KC_HTTPS_CERTIFICATE_FILE
-              value: /etc/x509/https/tls.crt
-            - name: KC_HTTPS_CERTIFICATE_KEY_FILE
-              value: /etc/x509/https/tls.key
           image: 'quay.io/keycloak/keycloak:26.0.6'
           imagePullPolicy: Always
           name: keycloak
-          volumeMounts:
-            - name: certifications-volume
-              mountPath: '/etc/x509/https'
-              readOnly: true
+          # volumeMounts:
+          #   - name: certifications-volume
+          #     mountPath: '/etc/x509/https'
+          #     readOnly: true
           ports:
             - containerPort: 8080
               name: http

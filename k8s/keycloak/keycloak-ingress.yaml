@@ -6,12 +6,11 @@ metadata:
   name: keycloak-ingress
   namespace: default
   annotations:
-    # kubernetes.io/ingress.class: nginx
-    # nginx.ingress.kubernetes.io/rewrite-target: /
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /
     # nginx.ingress.kubernetes.io/ssl-passthrough: 'true'
     # nginx.ingress.kubernetes.io/ssl-redirect: 'true'
     # nginx.ingress.kubernetes.io/backend-protocol: 'HTTPS'
-    cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   ingressClassName: nginx
   rules:
@@ -22,11 +21,11 @@ spec:
               service:
                 name: keycloak
                 port:
-                  number: 443
+                  number: 80
+                  # number: 443
             path: /
             pathType: ImplementationSpecific
-  tls:
-    - hosts:
-        - keycloak.monarka.local
-      secretName: letsencrypt-prod
-      # secretName: pki-secret
+  # tls:
+  #   - hosts:
+  #       - keycloak.monarka.local
+  #     secretName: pki-secret
