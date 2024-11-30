@@ -25,7 +25,7 @@ spec:
             - --hostname-strict=false
             - --proxy-headers=xforwarded
             # - --https-certificate-file=/etc/x509/https/tls.crt
-            - --https-certificate-key-file=/etc/x509/https/tls.key
+            # - --https-certificate-key-file=/etc/x509/https/tls.key
             # - --verbose
           env:
             - name: KC_HTTPS_CERTIFICATE_KEY_FILE
