@@ -20,7 +20,7 @@ spec:
             secretName: pki-secret
       containers:
         - args:
-            - start-dev
+            - start
             - --hostname=keycloak.monarka.local
             - --hostname-strict=false
             - --proxy-headers=xforwarded
