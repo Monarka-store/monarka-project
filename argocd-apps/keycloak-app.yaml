@@ -11,7 +11,7 @@ spec:
     targetRevision: main
     path: k8s/keycloak
   destination:
-    server: https://kubernetes.default.svc
+    server: https://kubernetes.monarka.svc
     namespace: monarka
 
   syncPolicy:
