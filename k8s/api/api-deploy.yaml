@@ -26,7 +26,8 @@ spec:
           image: monarkastoreapirn.azurecr.io/monarka-api:latest
           env:
             - name: PORT
-              value: '443'
+              value: '8585'
+              # value: '443'
             - name: DATABASE_URL
               valueFrom:
                 secretKeyRef:
@@ -62,13 +63,12 @@ spec:
                 secretKeyRef:
                   key: keycloak_grant_type
                   name: api-secret
-            - name: NODE_TLS_REJECT_UNAUTHORIZED
-              value: '0'
           volumeMounts:
             - name: pki-secret-volume
               mountPath: '/etc/ssl/certs'
               readOnly: true
           ports:
             - name: https
-              containerPort: 443
+              containerPort: 8585
+              # containerPort: 443
               protocol: TCP
