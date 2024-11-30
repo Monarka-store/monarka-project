@@ -14,10 +14,10 @@ spec:
       labels:
         app: keycloak
     spec:
-      volumes:
-        - name: pki-secret-volume
-          secret:
-            secretName: pki-secret
+      # volumes:
+      #   - name: pki-secret-volume
+      #     secret:
+      #       secretName: pki-secret
       containers:
         - args:
             - start
@@ -56,10 +56,10 @@ spec:
           image: 'quay.io/keycloak/keycloak:26.0.6'
           imagePullPolicy: Always
           name: keycloak
-          volumeMounts:
-            - name: pki-secret-volume
-              mountPath: '/etc/x509/https'
-              readOnly: true
+          # volumeMounts:
+          #   - name: pki-secret-volume
+          #     mountPath: '/etc/x509/https'
+          #     readOnly: true
           ports:
             - containerPort: 8080
               name: http
