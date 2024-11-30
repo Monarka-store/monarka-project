@@ -4,7 +4,7 @@ metadata:
   labels:
     app: keycloak
   name: keycloak
-  namespace: monarka
+  namespace: default
 spec:
   selector:
     matchLabels:
