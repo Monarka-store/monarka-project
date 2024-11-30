@@ -25,8 +25,8 @@ spec:
           imagePullPolicy: Always
           image: monarkastoreapirn.azurecr.io/monarka-client:latest
           args:
-            - --experimental-https-key=/etc/ssl/certs/tls.key
-            - --experimental-https-cert=/etc/ssl/certs/tls.crt
+            - --experimental-https-key /etc/ssl/certs/tls.key
+            - --experimental-https-cert /etc/ssl/certs/tls.crt
           env:
             - name: KEYCLOAK_CLIENT_ID
               valueFrom:
