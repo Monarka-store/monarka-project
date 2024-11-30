@@ -28,10 +28,6 @@ spec:
             # - --https-certificate-key-file=/etc/x509/https/tls.key
             # - --verbose
           env:
-            - name: KC_HTTPS_CERTIFICATE_FILE
-              value: /etc/x509/https/tls.crt
-            - name: KC_HTTPS_CERTIFICATE_KEY_FILE
-              value: /etc/x509/https/tls.key
             - name: KC_BOOTSTRAP_ADMIN_USERNAME
               valueFrom:
                 secretKeyRef:
@@ -57,6 +53,10 @@ spec:
                 secretKeyRef:
                   key: db_password
                   name: keycloak-secret
+            - name: KC_HTTPS_CERTIFICATE_FILE
+              value: /etc/x509/https/tls.crt
+            - name: KC_HTTPS_CERTIFICATE_KEY_FILE
+              value: /etc/x509/https/tls.key
           image: 'quay.io/keycloak/keycloak:26.0.6'
           imagePullPolicy: Always
           name: keycloak
