@@ -4,7 +4,7 @@ metadata:
   labels:
     app: keycloak
   name: keycloak
-  namespace: default, cert-manager
+  namespace: default
 spec:
   selector:
     matchLabels:
@@ -14,10 +14,10 @@ spec:
       labels:
         app: keycloak
     spec:
-      # volumes:
-      #   - name: pki-secret-volume
-      #     secret:
-      #       secretName: pki-secret
+      volumes:
+        - name: certifications-volume
+          secret:
+            secretName: cert-manager-webhook-ca
       containers:
         - args:
             - start
@@ -28,12 +28,10 @@ spec:
             # - --https-certificate-key-file=/etc/x509/https/tls.key
             # - --verbose
           env:
+            - name: KC_HTTPS_CERTIFICATE_FILE
+              value: /etc/x509/https/tls.crt
             - name: KC_HTTPS_CERTIFICATE_KEY_FILE
-              valueFrom:
-                secretKeyRef:
-                  key: tls.key
-                  name: letsencrypt-prod
-                  namespace: cert-manager
+              value: /etc/x509/https/tls.key
             - name: KC_BOOTSTRAP_ADMIN_USERNAME
               valueFrom:
                 secretKeyRef:
@@ -62,10 +60,10 @@ spec:
           image: 'quay.io/keycloak/keycloak:26.0.6'
           imagePullPolicy: Always
           name: keycloak
-          # volumeMounts:
-          #   - name: pki-secret-volume
-          #     mountPath: '/etc/x509/https'
-          #     readOnly: true
+          volumeMounts:
+            - name: certifications-volume
+              mountPath: '/etc/x509/https'
+              readOnly: true
           ports:
             - containerPort: 8080
               name: http
