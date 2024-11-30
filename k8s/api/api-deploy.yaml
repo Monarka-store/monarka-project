@@ -26,8 +26,7 @@ spec:
           image: monarkastoreapirn.azurecr.io/monarka-api:latest
           env:
             - name: PORT
-              value: '8585'
-              # value: '443'
+              value: '443'
             - name: DATABASE_URL
               valueFrom:
                 secretKeyRef:
@@ -69,6 +68,5 @@ spec:
               readOnly: true
           ports:
             - name: https
-              containerPort: 8585
-              # containerPort: 443
+              containerPort: 443
               protocol: TCP
