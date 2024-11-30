@@ -33,6 +33,7 @@ spec:
                 secretKeyRef:
                   key: tls.key
                   name: letsencrypt-prod
+                  namespace: cert-manager
             - name: KC_BOOTSTRAP_ADMIN_USERNAME
               valueFrom:
                 secretKeyRef:
