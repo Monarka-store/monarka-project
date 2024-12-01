@@ -21,8 +21,8 @@ spec:
               service:
                 name: keycloak
                 port:
-                  # number: 80
-                  number: 443
+                  number: 80
+                  # number: 443
             path: /
             pathType: ImplementationSpecific
   # tls:
