@@ -45,8 +45,8 @@ spec:
                 secretKeyRef:
                   key: db_password
                   name: keycloak-secret
-          # args:
-          #   - start
+          args:
+            - start-dev
           #   - --hostname=keycloak.monarka.local
           #   - --hostname-strict=false
           #   - --proxy-headers=xforwarded
