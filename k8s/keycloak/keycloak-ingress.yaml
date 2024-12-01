@@ -24,7 +24,8 @@ spec:
                   number: 80
                   # number: 443
             path: /
-            pathType: ImplementationSpecific
+            pathType: Prefix
+            # pathType: ImplementationSpecific
   # tls:
   #   - hosts:
   #       - keycloak.monarka.local
