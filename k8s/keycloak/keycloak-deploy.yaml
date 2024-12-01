@@ -47,10 +47,10 @@ spec:
                   name: keycloak-secret
           args:
             - start-dev
-            - --hostname=keycloak.monarka.local
-            - --hostname-strict=false
-            - --proxy-headers=xforwarded
-            - --http-enabled=true
+            # - --hostname=keycloak.monarka.local
+            # - --hostname-strict=false
+            # - --proxy-headers=xforwarded
+            # - --http-enabled=true
           #   - --https-certificate-file=/etc/x509/https/tls.crt
           #   - --https-certificate-key-file=/etc/x509/https/tls.key
           #   - --verbose
