@@ -19,16 +19,7 @@ spec:
       #     secret:
       #       secretName: pki-secret
       containers:
-        - args:
-            - start-dev
-            # - start
-            - --hostname=keycloak.monarka.local
-            - --hostname-strict=false
-            # - --proxy-headers=xforwarded
-            # - --https-certificate-file=/etc/x509/https/tls.crt
-            # - --https-certificate-key-file=/etc/x509/https/tls.key
-            # - --verbose
-          env:
+        - env:
             - name: KC_BOOTSTRAP_ADMIN_USERNAME
               valueFrom:
                 secretKeyRef:
@@ -54,6 +45,14 @@ spec:
                 secretKeyRef:
                   key: db_password
                   name: keycloak-secret
+          # args:
+          #   - start
+          #   - --hostname=keycloak.monarka.local
+          #   - --hostname-strict=false
+          #   - --proxy-headers=xforwarded
+          #   - --https-certificate-file=/etc/x509/https/tls.crt
+          #   - --https-certificate-key-file=/etc/x509/https/tls.key
+          #   - --verbose
           image: 'quay.io/keycloak/keycloak:26.0.6'
           imagePullPolicy: Always
           name: keycloak
