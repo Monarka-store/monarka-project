@@ -49,7 +49,6 @@ spec:
             - start-dev
             - --hostname-strict=false
             - --http-enabled=true
-            - --http-host=keycloak.monarka.local
           #   - --hostname=keycloak.monarka.local
           #   - --proxy-headers=xforwarded
           #   - --https-certificate-file=/etc/x509/https/tls.crt
