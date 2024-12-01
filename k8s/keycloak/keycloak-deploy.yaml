@@ -14,10 +14,10 @@ spec:
       labels:
         app: keycloak
     spec:
-      # volumes:
-      #   - name: certifications-volume
-      #     secret:
-      #       secretName: pki-secret
+      volumes:
+        - name: certifications-volume
+          secret:
+            secretName: pki-secret
       containers:
         - env:
             - name: KC_BOOTSTRAP_ADMIN_USERNAME
@@ -46,21 +46,20 @@ spec:
                   key: db_password
                   name: keycloak-secret
           args:
-            - start-dev
+            - start
             - --hostname-strict=false
-            - --http-enabled=true
-          #   - --hostname=keycloak.monarka.local
-          #   - --proxy-headers=xforwarded
-          #   - --https-certificate-file=/etc/x509/https/tls.crt
-          #   - --https-certificate-key-file=/etc/x509/https/tls.key
-          #   - --verbose
+            - --hostname=keycloak.monarka.local
+            - --proxy-headers=xforwarded
+            - --https-certificate-file=/etc/x509/https/tls.crt
+            - --https-certificate-key-file=/etc/x509/https/tls.key
+            - --verbose
           image: 'quay.io/keycloak/keycloak:26.0.6'
           imagePullPolicy: Always
           name: keycloak
-          # volumeMounts:
-          #   - name: certifications-volume
-          #     mountPath: '/etc/x509/https'
-          #     readOnly: true
+          volumeMounts:
+            - name: certifications-volume
+              mountPath: '/etc/x509/https'
+              readOnly: true
           ports:
             - containerPort: 8080
               name: http
