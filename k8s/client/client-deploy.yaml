@@ -24,10 +24,16 @@ spec:
         - name: client
           imagePullPolicy: Always
           image: monarkastoreapirn.azurecr.io/monarka-client:latest
+          command: ['pnpm']
           args:
-            - pnpm dev
-            - --experimental-https-cert /etc/ssl/certs/tls.crt
-            - --experimental-https-key /etc/ssl/certs/tls.key
+            [
+              'dev',
+              '--experimental-https',
+              '--experimental-https-cert',
+              '/etc/ssl/certs/tls.crt',
+              '--experimental-https-key',
+              '/etc/ssl/certs/tls.key',
+            ]
           env:
             - name: KEYCLOAK_CLIENT_ID
               valueFrom:
