@@ -26,7 +26,6 @@ spec:
           image: monarkastoreapirn.azurecr.io/monarka-client:latest
           args:
             - pnpm dev
-            - --experimental-https
             - --experimental-https-cert /etc/ssl/certs/tls.crt
             - --experimental-https-key /etc/ssl/certs/tls.key
           env:
